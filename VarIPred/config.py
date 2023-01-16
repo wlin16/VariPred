@@ -27,4 +27,17 @@ else:
 # ==================== Embeds path ====================================
 
 
-esm_storage_path = './example/embeds'
+esm_storage_path = '../example/embeds'
+
+
+# ==================== Dataset and Model ====================================
+# data process config
+
+batch_size = 32
+label_num = 2
+# model_size = 2088
+
+# train_parameters
+n_epochs = 200
+learning_rate = 1e-4
+early_stop = 10

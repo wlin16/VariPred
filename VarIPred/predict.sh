@@ -8,7 +8,7 @@ df_path="../example/dataset"
 target_ds="target"
 output_path="VarIPred_output" 
 
-python3 predict.py \
+python3 main.py \
                 -p ${df_path} \
                 -i ${target_ds} \
                 -o ${output_path}

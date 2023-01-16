@@ -6,7 +6,9 @@ import os
 import sys
 import argparse
 import logging
-
+from sklearn.model_selection import train_test_split
+from torch.utils.data import DataLoader
+import torch
 import esm
 
 
@@ -28,7 +30,7 @@ def train_VarIPred(train_ds, test_ds, valid_ds=None):
     '''
 
     input: 
-        train_ds: path of embeddings of training set
+        train_ds: path of embeddings of training set (e.g. ../example/embeds/train.pkl)
         test_ds: path of embeddings of test set
         valid_ds: path of embeddings of valid set
 
@@ -39,11 +41,11 @@ def train_VarIPred(train_ds, test_ds, valid_ds=None):
 
     '''
 
-    X_train, y_train, _ = utils.unpickler(data_type=train_ds)
-    X_test, y_test, record_id = utils.unpickler(data_type=test_ds)
+    X_train, y_train, _ = utils.unpickler(ds_name=train_ds)
+    X_test, y_test, record_id = utils.unpickler(ds_name=test_ds)
 
     if valid_ds is not None:
-        X_valid, y_valid = utils.unpickler(data_type=valid_ds)
+        X_valid, y_valid = utils.unpickler(ds_name=valid_ds)
         print('valid set name: ', valid_ds)
     else:
         X_train, X_valid, y_train, y_valid = train_test_split(X_train,y_train,
@@ -114,7 +116,7 @@ def run_VarIPred(target_ds,output):
     '''
 
 
-    X_target, y_target, record_id = unpickler.unpickler(data_type=target_ds)
+    X_target, y_target, record_id = utils.unpickler(ds_name=target_ds)
     print('X_target shape: ', X_target.shape)
 
     target_dataset = utils.VarIPredDataset(X_target, y_test)
@@ -145,6 +147,8 @@ parser.add_argument('--pred', '-i', default='target', type=str)
 parser.add_argument('--output', '-o', default='VarIPred_output', type=str)
 parser.add_argument('--train', '-t', action="store_true")
 
+args = parser.parse_args()
+
 if __name__ == '__main__':
 
     print('=============== Loading data... ===============')
@@ -158,7 +162,10 @@ if __name__ == '__main__':
         train_df = pd.read_csv(f'{storage_path}/{args.train_ds}.csv')
         test_df = pd.read_csv(f'{storage_path}/{args.test_ds}.csv')
 
+        print(f'getting embeds for {args.train_ds}.csv')
         get_embeds(train_df, dataset = args.train_ds)
+        
+        print(f'getting embeds for {args.test_ds}.csv')
         get_embeds(test_df, dataset = args.test_ds)
 
         train_VarIPred(args.train_ds, args.test_ds)

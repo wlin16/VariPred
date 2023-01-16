@@ -17,8 +17,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from sklearn.metrics import matthews_corrcoef
 from sklearn.metrics import accuracy_score
-from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
-
+from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler, Dataset
 
 
 # Data process part
@@ -132,12 +131,12 @@ def get_embeds_and_logits(raw_df,save_path, data_class, model, batch_converter, 
         concate = np.concatenate((wt_emb, mt_emb))
         xs.append({'x':concate.reshape(1,-1),'label':label,'logits':logits,'record_id':gene_id})
     
+    if not os.path.isdir(f'{save_path}'):
+        os.makedirs(f'{save_path}')  # create the dir for embeddings
+    
     save_path = save_path + '/' + data_class
     
     print("****** Save path is: ", save_path) 
-
-    if not os.path.isdir(f'{save_path}'):
-        os.mkdir(f'{save_path}')  # create the dir for embeddings
     
     with open(f'{save_path}.pkl', 'wb') as f:
         pickle.dump(xs, f) # ouput file e.g. /example/embeds/train.pkl
@@ -149,9 +148,9 @@ def get_embeds_and_logits(raw_df,save_path, data_class, model, batch_converter, 
 # model training part:
 
 ## fetch the embeddings
-def unpicker(ds_name):
+def unpickler(ds_name):
 
-    path = f'{ds_name}.pkl'
+    path = f'{config.esm_storage_path}/{ds_name}.pkl'
 
     concat=[]
     with open(path, 'rb') as file:
@@ -232,9 +231,9 @@ def trainer(train_loader, val_loader, model, device = config.device, early_stop 
 
     # Define the optimization algorithm. 
     optimizer = torch.optim.Adam(model.parameters(), lr=config.learning_rate, weight_decay = 0)
-    scheduler = get_linear_schedule_with_warmup(optimizer, 
-                                            num_warmup_steps= 0,
-                                            num_training_steps= len(train_loader)*n_epochs)
+    # scheduler = get_linear_schedule_with_warmup(optimizer, 
+    #                                         num_warmup_steps= 0,
+    #                                         num_training_steps= len(train_loader)*n_epochs)
 
     n_epochs, best_loss, step, early_stop_count = n_epochs, math.inf, 0, early_stop
     

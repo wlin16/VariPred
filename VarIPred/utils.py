@@ -131,10 +131,13 @@ def get_embeds_and_logits(raw_df,save_path, data_class, model, batch_converter, 
         
         concate = np.concatenate((wt_emb, mt_emb))
         xs.append({'x':concate.reshape(1,-1),'label':label,'logits':logits,'record_id':gene_id})
-        
+    
     save_path = save_path + '/' + data_class
     
     print("****** Save path is: ", save_path) 
+
+    if not os.path.isdir(f'{save_path}'):
+        os.mkdir(f'{save_path}')  # create the dir for embeddings
     
     with open(f'{save_path}.pkl', 'wb') as f:
         pickle.dump(xs, f) # ouput file e.g. /example/embeds/train.pkl

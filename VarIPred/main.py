@@ -25,7 +25,7 @@ def get_embeds(df, dataset):
     utils.get_embeds_and_logits(df, save_path = config.esm_storage_path, data_class=dataset, model = model_1b, batch_converter = batch_converter_1b, alphabet = alphabet_1b)
 
 
-def train_VarIPred(train_ds, test_ds, valid_ds=None):
+def train_VarIPred(train_ds, test_ds, valid_ds=None,train=True):
 
     '''
 
@@ -97,7 +97,6 @@ def train_VarIPred(train_ds, test_ds, valid_ds=None):
     preds, y_true = utils.predict(test_loader, model, config.device)
             
     utils.predict_results(y_true, preds,
-                          model_selection,
                           record_id = record_id,
                           train = train
                           )
@@ -119,7 +118,7 @@ def run_VarIPred(target_ds,output):
     X_target, y_target, record_id = utils.unpickler(ds_name=target_ds)
     print('X_target shape: ', X_target.shape)
 
-    target_dataset = utils.VarIPredDataset(X_target, y_test)
+    target_dataset = utils.VarIPredDataset(X_target, y_target)
     target_loader = DataLoader(target_dataset, batch_size=config.batch_size)
 
     model_size = X_target.shape[1]
@@ -127,13 +126,16 @@ def run_VarIPred(target_ds,output):
     model = utils.MLPClassifier_LeakyReLu(num_input = model_size, num_hidden = num_hidden, num_output = config.label_num).to(config.device)
 
     storage_path = f'./model'
+    
+    if not os.path.exists(storage_path):
+        print('Please train the model first')
+    
     checkpoint=torch.load(f'{storage_path}/model.ckpt')
     model.load_state_dict(checkpoint['model_state_dict'])
     
     preds, y_true = utils.predict(target_loader, model, config.device)
             
     utils.predict_results(y_true, preds,
-                          target_ds,
                           record_id = record_id,
                           output_name=output
                           )
@@ -173,8 +175,9 @@ if __name__ == '__main__':
     else:
         # predict the target df with VarIPred
         target_df = pd.read_csv(f'{storage_path}/{args.pred}.csv')
+        target_df['label'] = -1 # it doesn't matter what the true label is. It's just to ensure the programme can run properly.  
         get_embeds(target_df, dataset = args.pred)
-        run_VarIPred(target_ds=args.pred, output=output)
+        run_VarIPred(target_ds=args.pred, output=args.output)
 
     
     

@@ -16,7 +16,7 @@ import torch.nn as nn
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from sklearn.metrics import matthews_corrcoef
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import roc_auc_score
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler, Dataset
 
 
@@ -136,7 +136,7 @@ def get_embeds_and_logits(raw_df,save_path, data_class, model, batch_converter, 
     
     save_path = save_path + '/' + data_class
     
-    print("****** Save path is: ", save_path) 
+    print(f"****** {data_class} embedding Saving path is: ", save_path, ' ******') 
     
     with open(f'{save_path}.pkl', 'wb') as f:
         pickle.dump(xs, f) # ouput file e.g. /example/embeds/train.pkl
@@ -285,11 +285,23 @@ def trainer(train_loader, val_loader, model, device = config.device, early_stop 
                 pred = model(b_seq.float())
                 loss = criterion(pred[:,0], b_labels)
                 
+                # preds.append(pred[:,0].detach().cpu()[0].tolist()) 
+                # labels.append(b_labels.detach().cpu()[0].tolist())
+                
             loss_record.append(loss.item())
             total_eval_accuracy += flat_accuracy(pred, b_labels)
 
             val_pbar.set_description(f'Evaluating [{epoch + 1}/{n_epochs}]')
             val_pbar.set_postfix({'evaluate loss': loss.detach().item()})
+            
+            
+        # For selecting the best MCC threshold 
+        # breakpoint()
+        # y_true_np = np.array(labels)
+        # pred_np = np.array(preds)
+        # for label, pred_value in zip(y_true_np, pred_np):
+        #     with open(f'./threhold_pick.txt', 'a+') as f:
+        #         f.write(f'{label}\t{pred_value}\n')
         
         mean_valid_loss = sum(loss_record)/len(loss_record)
         avg_val_accuracy = total_eval_accuracy / len(val_loader)
@@ -340,43 +352,49 @@ def predict(test_loader, model, device):
 def predict_results(y_true, preds, record_id, train=False, output_name =None):
     result_path = f'../example/output_results'  # path for saving predictions
 
+    if not os.path.exists(f'{result_path}'):
+        os.makedirs(result_path)
+
     if train:
 
         label_names = {'0':0, '1':1}
 
         auc_value = roc_auc_score(y_true, preds)
         print('AUC score: ', auc_value)
-
-        report = classification_report(y_true, preds,target_names=label_names)
-        print(report)
-
-        MCC = matthews_corrcoef(y_true, preds)
-        print('MCC: ', MCC)
-    
+        
         y_true_np = np.array(y_true)
         preds = np.array(preds >= 0.2, dtype=int)
-
+        
+        MCC = matthews_corrcoef(y_true_np, preds)
+        print('MCC: ', MCC)
+        
+        report = classification_report(y_true_np, preds,target_names=label_names)
+        print(report)
+    
         # Saving the prediction results for each test data
         if not os.path.exists(f'{result_path}/model_eval_result.txt'):
             header = "target_id\tlabel\tprediction\n"
             with open(f'{result_path}/model_eval_result.txt', 'a') as file_writer:
                 file_writer.write(header)
 
-            with open(f'{result_path}/model_performance.txt', 'a') as file_writer:
-                file_writer.write(f'MCC: {MCC}\nroc_auc_score: {auc_value}\n')
-
         for ids, label, pred_value in zip(record_id, y_true_np, preds):
             with open(f'{result_path}/model_eval_result.txt', 'a+') as f:
                 f.write(f'{ids}\t{label}\t{pred_value}\n')
+        
+        with open(f'{result_path}/model_performance.txt', 'a') as file_writer:
+                file_writer.write(f'MCC: {MCC}\nroc_auc_score: {auc_value}\n')
 
     else:
+        
+        preds = np.array(preds >= 0.2, dtype=int)
+        
         if not os.path.exists(f'../example/{output_name}.txt'):
             header = "target_id\tprediction\n"
             with open(f'{result_path}/{output_name}.txt', 'a') as file_writer:
                 file_writer.write(header)
 
         for ids, pred_value in zip(record_id, preds):
-            with open(f'{result_path}/model_eval_result.txt', 'a+') as f:
+            with open(f'{result_path}/{output_name}.txt', 'a+') as f:
                 f.write(f'{ids}\t{pred_value}\n')
     
 

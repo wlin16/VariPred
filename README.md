@@ -14,15 +14,15 @@ $ conda install --file requirements.txt
 
 The input for VarIPred must contains
 
-1.  ** mutation info** (e.g. **NP_001035957.1_L847P**), a.k.a "target_id"
+1.  **mutation info** (e.g. **NP_001035957.1_L847P**), a.k.a "target_id"
 
 2.  **mutation position**, a.k.a "aa_index"
 
-3.  **wild-type amino acid, ** a.k.a "wt_aa"
+3.  **wild-type amino acid**, ** a.k.a "wt_aa"
 
-4.  **mutant-type amino acid, **a.k.a "mt_aa"
+4.  **mutant-type amino acid**, **a.k.a "mt_aa"
 
-5.  **wild-type sequence **, a.k.a "wt_seq"
+5.  **wild-type sequence**, a.k.a "wt_seq"
 
 6.  **mutant-type sequence**, a.k.a "mt_seq"
 

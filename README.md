@@ -26,7 +26,7 @@ The input for VariPred must contains
 
 6.  **mutant-type sequence**, a.k.a "mt_seq"
 
-    Label is optional for a prediction purpose but neccessary for preparing a training and test sets if re-train the model.
+    Label is optional for a prediction purpose but neccessary for preparing the training and test sets if re-train the model.
 
     Please name the column of the dataframe according to the example files under the "example" folder.
 

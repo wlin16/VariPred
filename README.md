@@ -18,9 +18,9 @@ The input for VariPred must contains
 
 2.  **mutation position**, a.k.a "aa_index"
 
-3.  **wild-type amino acid**, ** a.k.a "wt_aa"
+3.  **wild-type amino acid**, a.k.a "wt_aa"
 
-4.  **mutant-type amino acid**, **a.k.a "mt_aa"
+4.  **mutant-type amino acid**, a.k.a "mt_aa"
 
 5.  **wild-type sequence**, a.k.a "wt_seq"
 

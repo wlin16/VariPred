@@ -47,7 +47,7 @@ The input for VariPred must contains
 
 If you just need to predict the results for each variants with VarIPred and do not want evaluate the performance of the model, please skip directly to Step 5.
 
-We recommand you have at least a 12GB GPU, e.g. NVIDIA GeForce 1080Ti
+We recommand you have an at least 12GB GPU, e.g. NVIDIA GeForce 1080Ti
 
 PyTorch should be installed, see: https://pytorch.org/get-started/locally/
 

@@ -25,7 +25,7 @@ def get_embeds(df, dataset):
     utils.get_embeds_and_logits(df, save_path = config.esm_storage_path, data_class=dataset, model = model_1b, batch_converter = batch_converter_1b, alphabet = alphabet_1b)
 
 
-def train_VarIPred(train_ds, test_ds, valid_ds=None,train=True):
+def train_VariPred(train_ds, test_ds, valid_ds=None,train=True):
 
     '''
 
@@ -59,9 +59,9 @@ def train_VarIPred(train_ds, test_ds, valid_ds=None,train=True):
     print('X_test shape: ', X_test.shape)
     print('X_valid shape: ', X_valid.shape)
     
-    train_dataset = utils.VarIPredDataset(X_train, y_train)
-    val_dataset = utils.VarIPredDataset(X_valid, y_valid)
-    test_dataset = utils.VarIPredDataset(X_test, y_test)
+    train_dataset = utils.VariPredDataset(X_train, y_train)
+    val_dataset = utils.VariPredDataset(X_valid, y_valid)
+    test_dataset = utils.VariPredDataset(X_test, y_test)
 
     #> Feed dataset to dataloader
     train_loader = DataLoader(train_dataset, batch_size=config.batch_size, shuffle=True)
@@ -70,7 +70,7 @@ def train_VarIPred(train_ds, test_ds, valid_ds=None,train=True):
 
     
     print('\n\n\n\n')
-    print('=============== VarIPred model training start ===============')
+    print('=============== VariPred model training start ===============')
     
     model_size = X_train.shape[1]
     num_hidden = int(model_size/2) 
@@ -102,7 +102,7 @@ def train_VarIPred(train_ds, test_ds, valid_ds=None,train=True):
                           )
 
 
-def run_VarIPred(target_ds,output):
+def run_VariPred(target_ds,output):
 
     '''
 
@@ -110,7 +110,7 @@ def run_VarIPred(target_ds,output):
         target_ds: path of embeddings of target set (without a true label)
 
     output:
-        model predictions (e.g. ../example/output_results/VarIPred_output.txt)
+        model predictions (e.g. ../example/output_results/VariPred_output.txt)
 
     '''
 
@@ -118,7 +118,7 @@ def run_VarIPred(target_ds,output):
     X_target, y_target, record_id = utils.unpickler(ds_name=target_ds)
     print('X_target shape: ', X_target.shape)
 
-    target_dataset = utils.VarIPredDataset(X_target, y_target)
+    target_dataset = utils.VariPredDataset(X_target, y_target)
     target_loader = DataLoader(target_dataset, batch_size=config.batch_size)
 
     model_size = X_target.shape[1]
@@ -141,12 +141,12 @@ def run_VarIPred(target_ds,output):
                           )
 
 
-parser = argparse.ArgumentParser(description='add args for training the VarIPred model')
+parser = argparse.ArgumentParser(description='add args for training the VariPred model')
 parser.add_argument('--df_path', '-p', default='../example/dataset', type=str)
 parser.add_argument('--train_ds', '-tr', default='train', type=str)
 parser.add_argument('--test_ds', '-ts', default='test', type=str)
 parser.add_argument('--pred', '-i', default='target', type=str)
-parser.add_argument('--output', '-o', default='VarIPred_output', type=str)
+parser.add_argument('--output', '-o', default='VariPred_output', type=str)
 parser.add_argument('--train', '-t', action="store_true")
 
 args = parser.parse_args()
@@ -170,14 +170,14 @@ if __name__ == '__main__':
         print(f'getting embeds for {args.test_ds}.csv')
         get_embeds(test_df, dataset = args.test_ds)
 
-        train_VarIPred(args.train_ds, args.test_ds)
+        train_VariPred(args.train_ds, args.test_ds)
 
     else:
-        # predict the target df with VarIPred
+        # predict the target df with VariPred
         target_df = pd.read_csv(f'{storage_path}/{args.pred}.csv')
         target_df['label'] = -1 # it doesn't matter what the true label is. It's just to ensure the programme can run properly.  
         get_embeds(target_df, dataset = args.pred)
-        run_VarIPred(target_ds=args.pred, output=args.output)
+        run_VariPred(target_ds=args.pred, output=args.output)
 
     
     

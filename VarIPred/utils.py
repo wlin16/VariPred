@@ -179,7 +179,7 @@ def unpickler(ds_name):
 
 
 ## Prepare datasets for models 
-class VarIPredDataset(Dataset):
+class VariPredDataset(Dataset):
     def __init__(self, X, y):
         super().__init__()
 

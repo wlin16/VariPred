@@ -10,6 +10,7 @@ $ conda install --file requirements.txt
 
 ```
 
+
 ## Step 2: Prepare dataset
 
 The input for VariPred must contains
@@ -43,11 +44,13 @@ The input for VariPred must contains
 
 - Now, we have a dataframe named as "target.csv"
 
+
+
 ## Step 3: Train the model
 
-*Note: The weight of the trained model mentioned in the publication has been given under the directory of VarIPred/model/model.ckpt. Running train_VariPred.sh script to re-train the model will replace the given weight. If there is no need to customize the model for a specific task, but only to use a trained model to make clinical impact predictions for variants, please skip this step and proceed directly to step 5.  
+*Note: The weight of the trained model mentioned in the publication has been given under the directory of VarIPred/model/model.ckpt. Running train_VariPred.sh script to re-train the model will replace the given weight. If there is no need to customize the model for a specific task, but only to use a trained model to make clinical impact predictions for variants, please skip this step and proceed directly to step 5.*  
 
-*If there is no need to customize the model for a specific task or evaluate the performance of VariPred, but only to use VariPred to make clinical impact predictions for variants, please skip Step 3 and Step 4 and proceed directly to Step 5.  
+*If there is no need to customize the model for a specific task or evaluate the performance of VariPred, but only to use VariPred to make clinical impact predictions for variants, please skip Step 3 and Step 4 and proceed directly to Step 5.*  
 
 We recommand you have an at least 12GB GPU, e.g. NVIDIA GeForce 1080Ti
 
@@ -64,6 +67,8 @@ PyTorch should be installed, see: https://pytorch.org/get-started/locally/
 
 - Now, we have two dataframe named as "VariPred_train.csv" and "VariPred_test.csv" under the directory of example/dataset
 
+
+
 ## Setp 4: Fetch the embeddings and train the model
 
 1. If you would like to re-train the VariPred, the embedding representations need to be generated for both the training and test sets.
@@ -77,6 +82,8 @@ PyTorch should be installed, see: https://pytorch.org/get-started/locally/
 ```shell
 $ ./train_VariPred.sh
 ```
+
+
 
 ## Setp 5: Fetch the embeddings and predict the effects of variants
 

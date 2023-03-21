@@ -3,7 +3,7 @@
 VarIPred was trained using the softwares included in the file "requirements.txt". Please install requirements first.
 
 ```shell
-$ git@github.com:wlin16/VarIPred.git
+$ git@github.com:wlin16/VariPred.git
 $ cd VarIPred
 $ conda create -n varipred python=3.8.5
 $ conda install --file requirements.txt
@@ -12,7 +12,7 @@ $ conda install --file requirements.txt
 
 ## Step 2: Prepare dataset
 
-The input for VarIPred must contains
+The input for VariPred must contains
 
 1.  **mutation info** (e.g. **NP_001035957.1_L847P**), a.k.a "target_id"
 

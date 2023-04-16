@@ -139,6 +139,8 @@ def run_VariPred(target_ds,output):
                           record_id = record_id,
                           output_name=output
                           )
+    print()
+    print(f"Your prediction results are saved in ../example/output_results/{output}.txt")
 
 
 parser = argparse.ArgumentParser(description='add args for training the VariPred model')
@@ -181,8 +183,7 @@ if __name__ == '__main__':
 
     
     
-    print('\n\n\n\n')
+    print('\n\n')
     print('=============== No Bug No Error, Finished!!! ===============')
-    os.system('tput bel')
     
-    print('\n\n\n\n')
+    print('\n\n')

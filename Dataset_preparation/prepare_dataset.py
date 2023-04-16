@@ -106,53 +106,52 @@ def validable(df):
 
 
 if __name__ == '__main__':
-
-	# seq provided by 3CNet group
-	transcript_seq = pd.read_csv('transcript_seq.csv')
-
-	# clinvar variant example with pathogenicity label (only with missense mutation)
-	example = pd.read_csv('./example.txt', sep = '\s')
-	example = df_process(example)
-
-
-
-	################
+    # seq provided by 3CNet group
+    transcript_seq = pd.read_csv('transcript_seq.csv')
+    
+    # clinvar variant example with pathogenicity label (only with missense mutation)
+    example = pd.read_csv('./example.txt', sep = '\s')
+    example = df_process(example)
 
 
 
-	# find the genes not included in the provided transcript list
-	difference = example[~example.NP_id.isin(transcript_seq.NP_id)]
-	included = example[example.NP_id.isin(transcript_seq.NP_id)]
-
-	# fetch wt_seq for each gene
-	if len(difference) > 0:
-	    # fetch wt_seq from NCBI for not founded ids, and create correponing mt_seq for each variant
-	    print(f'There are {len(difference)} genes need to find wt_seq from NCBI')
-	    difference = fetch_seq(difference)
-	    difference = create_mt_sequence(difference) 
-
-	included = pd.merge(included, transcript_seq, on='NP_id', how='left').dropna(axis = 0)
-	included = create_mt_sequence(included)
-
-	if len(difference) > 0:
-	    df = pd.concat([included,difference])
-	else:
-	    df = included
+    ################
 
 
 
-	################
+    # find the genes not included in the provided transcript list
+    difference = example[~example.NP_id.isin(transcript_seq.NP_id)]
+    included = example[example.NP_id.isin(transcript_seq.NP_id)]
+
+    # fetch wt_seq for each gene
+    if len(difference) > 0:
+        # fetch wt_seq from NCBI for not founded ids, and create correponing mt_seq for each variant
+        print(f'There are {len(difference)} genes need to find wt_seq from NCBI')
+        difference = fetch_seq(difference)
+        difference = create_mt_sequence(difference) 
+
+    included = pd.merge(included, transcript_seq, on='NP_id', how='left').dropna(axis = 0)
+    included = create_mt_sequence(included)
+
+    if len(difference) > 0:
+        df = pd.concat([included,difference])
+    else:
+        df = included
 
 
 
-	# valid how many wt_seq are not correct:
-	error_counter = validable(df)
+    ################
 
-	if error_counter == 0:
-	    print('All wt_seq are correct')
+
+
+    # valid how many wt_seq are not correct:
+    error_counter = validable(df)
+
+    if error_counter == 0:
+        print('All wt_seq are correct')
         df.to_csv('../example/dataset/target.csv')
-	else:
-	    print(f'There are {error_counter} wt_seq are not correctly fetched from NCBI')
+    else:
+        print(f'There are {error_counter} wt_seq are not correctly fetched from NCBI')
         print('dataframe is not saved')
 
 

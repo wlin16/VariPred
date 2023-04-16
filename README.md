@@ -42,7 +42,7 @@ The input for VariPred must contains
     $ python3 prepare_dataset.py target
     ```
 
-- Now, we have a dataframe named as "target.csv"
+- Now, we have a dataframe named as "target.csv" under example/dataset/
 
 =========================================================================================================
 

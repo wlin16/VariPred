@@ -1,7 +1,7 @@
 VariPred is a novel and simple framework that leverages the power of pre-trained protein language models to predict variant pathogenicity. It was introduced in the 2023 preprint of the paper ["VariPred: Enhancing Pathogenicity Prediction of Missense Variants Using Protein Language Models"](https://www.biorxiv.org/content/10.1101/2023.03.16.532942v1)
 
 
-Recommand to implement this workflow on Linux system.
+Recommand to implement this workflow on a Linux system.
 
 For people fail to install openfold packages, please try `pip install fair-esm`.
 

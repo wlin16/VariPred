@@ -6,7 +6,6 @@ Recommand to implement this workflow on a Linux system.
 For people fail to install openfold packages, please try `pip install fair-esm`.
 
 *Update on 2023.5.5:*
-
     - Embeddings can be generated in batches, meaning that you can obtain them much more quickly by adjusting the batch_size_for_embed_gen parameter in the config file. For example, if you set batch_size_for_embed_gen=16 and use a GPU with larger memory, you can generate embeddings for 16 data points simultaneously.
 
 

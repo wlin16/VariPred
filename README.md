@@ -14,7 +14,7 @@ For people fail to install openfold packages, please try `pip install fair-esm`.
 VariPred was trained using the softwares included in the file "requirements.txt". Please install requirements first.
 
 ```shell
-$ git@github.com:wlin16/VariPred.git
+$ git clone git@github.com:wlin16/VariPred.git
 $ cd VariPred
 $ conda create -n varipred python=3.8.5
 $ conda install --file requirements.txt

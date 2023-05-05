@@ -6,6 +6,7 @@ Recommand to implement this workflow on a Linux system.
 For people fail to install openfold packages, please try `pip install fair-esm`.
 
 *Update on 2023.5.5:*
+
     - Embeddings can be generated in batches, meaning that you can obtain them much more quickly by adjusting the batch_size_for_embed_gen parameter in the config file. For example, if you set batch_size_for_embed_gen=16 and use a GPU with larger memory, you can generate embeddings for 16 data points simultaneously.
 
 
@@ -61,7 +62,7 @@ The input for VariPred must contains
 
 ## Step 3: Train the model
 
-*Note: The weight of the trained model mentioned in the publication has been given under the directory of VariPred/model/model.ckpt. Running train_VariPred.sh script to re-train the model will replace the given weight. *  
+*Note: The weight of the trained model mentioned in the publication has been given under the directory of VariPred/model/model.ckpt. Running train_VariPred.sh script to re-train the model will replace the given weight.*  
 
 *If there is no need to customize the model for a specific task or evaluate the performance of VariPred, but only to use VariPred to make clinical impact predictions for variants, please skip Step 3 and Step 4 and proceed directly to Step 5.*  
 

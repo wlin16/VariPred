@@ -61,7 +61,7 @@ The input for VariPred must contains
 
 ## Step 3: Train the model
 
-*Note: The weight of the trained model mentioned in the publication has been given under the directory of VariPred/model/model.ckpt. Running train_VariPred.sh script to re-train the model will replace the given weight. If there is no need to customize the model for a specific task, but only to use a trained model to make clinical impact predictions for variants, please skip this step and proceed directly to step 5.*  
+*Note: The weight of the trained model mentioned in the publication has been given under the directory of VariPred/model/model.ckpt. Running train_VariPred.sh script to re-train the model will replace the given weight. *  
 
 *If there is no need to customize the model for a specific task or evaluate the performance of VariPred, but only to use VariPred to make clinical impact predictions for variants, please skip Step 3 and Step 4 and proceed directly to Step 5.*  
 

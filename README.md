@@ -6,7 +6,7 @@ Recommand to implement this workflow on a Linux system.
 For people fail to install openfold packages, please try `pip install fair-esm`.
 
 *Update on 2023.5.5:*
-    - Embeddings can be generated in batches, meaning that you can obtain them much more quickly by adjusting the batch_size_for_embed_gen parameter in the config file. For example, if you set batch_size_for_embed_gen=16 and use a GPU with larger memory, you can generate embeddings for 16 data points simultaneously.
+- Embeddings can be generated in batches, meaning that you can obtain them much more quickly by adjusting the batch_size_for_embed_gen parameter in the config file. For example, if you set batch_size_for_embed_gen=16 and use a GPU with larger memory, you can generate embeddings for 16 data points simultaneously.
 
 
 # Step 1: Installation
@@ -73,7 +73,7 @@ PyTorch should be installed, see: https://pytorch.org/get-started/locally/
 
 "train.csv", "test.csv" are the example files as the training and test sets to re-train the model. "target.csv" is the example file for a simple prediction purpose.
 
-- - To prepare a training set and a test set, you can prepare the datasets with the following codes
+- To prepare a training set and a test set, you can prepare the datasets with the following codes
 
     ```shell
     $ python3 prepare_dataset.py VariPred_train

@@ -37,8 +37,6 @@ def get_embeds(df, dataset):
     
     utils.generate_embeds_and_save(df, save_path = config.esm_storage_path, data_class=dataset, model = model, batch_converter = batch_converter, alphabet = alphabet)
 
-    
-    # utils.get_embeds_and_logits(df, save_path = config.esm_storage_path, data_class=dataset, model = model_1b, batch_converter = batch_converter_1b, alphabet = alphabet_1b)
 
 
 def train_VariPred(train_ds, test_ds, valid_ds=None,train=True):

@@ -5,7 +5,7 @@
 
 # In this example, we are using the training set named as "target.csv" under the directory "../example/dataset"
 df_path="../example/dataset"
-target_ds="erbb4varipred"
+target_ds="target"
 output_name="VariPred_output" 
 
 python3 main.py \

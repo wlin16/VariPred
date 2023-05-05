@@ -1,9 +1,13 @@
-VariPred is a novel and simple framework that leverages the power of pre-trained protein language models to predict variant pathogenicity. It was introduced in the 2023 preprint of the paper ["VariPred: Enhancing Pathogenicity Prediction of Missense Variants Using Protein Language Models"](https://www.biorxiv.org/content/10.1101/2023.03.16.532942v1)
+VariPred is a novel and simple framework that leverages the power of pre-trained protein language models to predict variant pathogenicity. It was introduced in the 2023 preprint of the paper ["VariPred: Enhancing Pathogenicity Prediction of Missense Variants Using Protein Language Models"](https://www.biorxiv.org/content/10.1101/2023.03.16.532942v1). *Note: VariPred is not for the DMS data analysis*
 
 
 Recommand to implement this workflow on a Linux system.
 
 For people fail to install openfold packages, please try `pip install fair-esm`.
+
+*Update on 2023.5.5:*
+    - Embeddings can be generated in batches, meaning that you can obtain them much more quickly by adjusting the batch_size_for_embed_gen parameter in the config file. For example, if you set batch_size_for_embed_gen=16 and use a GPU with larger memory, you can generate embeddings for 16 data points simultaneously.
+
 
 # Step 1: Installation
 

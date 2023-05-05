@@ -32,7 +32,7 @@ esm_storage_path = '../example/embeds'
 
 # ==================== Dataset and Model ====================================
 # data process config
-
+batch_size_for_embed_gen = 3
 batch_size = 32
 label_num = 2
 # model_size = 2088

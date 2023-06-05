@@ -191,7 +191,9 @@ if __name__ == '__main__':
         # predict the target df with VariPred
         target_df = pd.read_csv(f'{storage_path}/{args.pred}.csv')
         target_df['label'] = -1 # it doesn't matter what the true label is. It's just to ensure the programme can run properly.  
-        get_embeds(target_df, dataset = args.pred)
+        if not os.path.exists(f'{config.esm_storage_path}/{args.pred}.pkl'):
+            print(f'getting embeds for {args.pred}.csv')  
+            get_embeds(target_df, dataset = args.pred)
         run_VariPred(target_ds=args.pred, output=args.output)
 
     

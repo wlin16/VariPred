@@ -14,7 +14,7 @@ contextlib2==21.6.0
 cryptography
 deepspeed==0.5.9
 dill==0.3.5.1
-DLLogger @ git+https://github.com/NVIDIA/dllogger.git@0540a43971f4a8a16693a9de9de73c1072020769
+#DLLogger @ git+https://github.com/NVIDIA/dllogger.git@0540a43971f4a8a16693a9de9de73c1072020769
 dm-tree==0.1.7
 einops==0.5.0
 fair-esm==2.0.0

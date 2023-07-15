@@ -11,7 +11,7 @@ from Bio import SeqIO
 
 # convert HGVSp variant representation into gene_id, aa_index. wt_aa, and mt_aa
 def get_id(input_id):
-    txt = re.search( r"([A-Z]P_[0-9]+.[0-9])(:p.)([A-Z][a-z]+)([0-9]+)([A-Z][a-z]+)", input_id)
+    txt = re.search( r"([A-Z]P_[0-9]+.[0-9]+)(:p.)([A-Z][a-z]+)([0-9]+)([A-Z][a-z]+)", input_id)
     NP_id = txt.group(1)
     wt = txt.group(3)
     aa_index = txt.group(4)

@@ -47,7 +47,7 @@ def get_truncation(chop):
                                       511:seq['aa_index'] + 511]
             chop.loc[index, 'wt_seq'] = select_wt
             chop.loc[index, 'mt_seq'] = select_mt
-           chop.loc[index,'new_index'] = 511
+            chop.loc[index,'new_index'] = 511
     chop["new_index"] = chop["new_index"].astype(int)
 
     return chop

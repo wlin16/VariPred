@@ -110,7 +110,8 @@ if __name__ == '__main__':
     transcript_seq = pd.read_csv('transcript_seq.csv')
     
     # clinvar variant example with pathogenicity label (only with missense mutation)
-    example = pd.read_csv('./example.txt', sep = '\s')
+    file_name = sys.argv[1]
+    example = pd.read_csv(file_name + ".txt", sep = '\s')
     example = df_process(example)
 
 
@@ -149,7 +150,7 @@ if __name__ == '__main__':
 
     if error_counter == 0:
         print('All wt_seq are correct')
-        df.to_csv('../example/dataset/target.csv')
+        df.to_csv(f'../example/dataset/{file_name}.csv')
     else:
         print(f'There are {error_counter} wt_seq are not correctly fetched from NCBI')
         print('dataframe is not saved')

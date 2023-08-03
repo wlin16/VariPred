@@ -4,7 +4,7 @@ VariPred is a novel and simple framework that leverages the power of pre-trained
 **Recommand to implement this workflow on a Linux system.**  
 
 
-For people fail to install openfold packages, please try `pip install fair-esm`.
+- For people fail to install openfold packages, please try `pip install fair-esm`.
 
 *Update on 2023.8.3:*
 - We fixed bugs in VariPred_test.txt and VariPred_train.txt and also in the embedding extraction.

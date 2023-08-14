@@ -26,7 +26,7 @@ $ conda create -n varipred python=3.8.5
 $ conda install --file requirements.txt
 
 ```
-=========================================================================================================
+****************  
 
 # Step 2: Prepare dataset
 
@@ -61,7 +61,7 @@ The input for VariPred must contains
 
 - Now, we have a dataframe named as "target.csv" under example/dataset/
 
-=========================================================================================================
+****************  
 
 
 
@@ -88,7 +88,7 @@ PyTorch should be installed, see: https://pytorch.org/get-started/locally/
 
 - Now, we have two dataframe named as "VariPred_train.csv" and "VariPred_test.csv" under the directory of example/dataset
 
-=========================================================================================================
+****************  
 
 
 # Setp 4: Fetch the embeddings and train the model
@@ -105,7 +105,7 @@ PyTorch should be installed, see: https://pytorch.org/get-started/locally/
 $ ./train_VariPred.sh
 ```
 
-=========================================================================================================
+****************  
 
 # Setp 5: Fetch the embeddings and predict the effects of variants
 

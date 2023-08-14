@@ -1,10 +1,12 @@
 VariPred is a novel and simple framework that leverages the power of pre-trained protein language models to predict variant pathogenicity. It was introduced in the 2023 preprint of the paper ["VariPred: Enhancing Pathogenicity Prediction of Missense Variants Using Protein Language Models"](https://www.biorxiv.org/content/10.1101/2023.03.16.532942v1). *Note: VariPred is not for the DMS data analysis*
 
+****************  
 
 **Recommand to implement this workflow on a Linux system.**  
 
+*For people fail to install openfold packages, please try `pip install fair-esm`.*
 
-- For people fail to install openfold packages, please try `pip install fair-esm`.
+***************  
 
 *Update on 2023.8.3:*
 - We fixed bugs in VariPred_test.txt and VariPred_train.txt and also in the embedding extraction.
@@ -26,7 +28,7 @@ $ conda install --file requirements.txt
 ```
 =========================================================================================================
 
-## Step 2: Prepare dataset
+# Step 2: Prepare dataset
 
 The input for VariPred must contains
 
@@ -63,7 +65,7 @@ The input for VariPred must contains
 
 
 
-## Step 3: Train the model
+# Step 3: Train the model
 
 *Note: The weight of the trained model mentioned in the publication has been given under the directory of VariPred/model/model.ckpt. Running train_VariPred.sh script to re-train the model will replace the given weight.*  
 
@@ -89,7 +91,7 @@ PyTorch should be installed, see: https://pytorch.org/get-started/locally/
 =========================================================================================================
 
 
-## Setp 4: Fetch the embeddings and train the model
+# Setp 4: Fetch the embeddings and train the model
 
 1. If you would like to re-train the VariPred, the embedding representations need to be generated for both the training and test sets.
 
@@ -105,7 +107,7 @@ $ ./train_VariPred.sh
 
 =========================================================================================================
 
-## Setp 5: Fetch the embeddings and predict the effects of variants
+# Setp 5: Fetch the embeddings and predict the effects of variants
 
 1. To predict the effects of variants by VariPred, please replace the variables based on the paths where you stored your data in "predict.sh" script. Then run the script. This will give you the clinical impact of each variants
 

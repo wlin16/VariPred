@@ -27,9 +27,15 @@ $ git clone git@github.com:wlin16/VariPred.git
 
 $ cd VariPred
 $ conda create -n varipred python=3.8.5
-$ conda install --file requirements.txt
+$ conda activate varipred
+$ pip install -r requirements.txt
 
 ```
+
+Note: PyTorch should be installed, see: https://pytorch.org/get-started/locally/
+
+In this study, we installed the Pytorch with this command: `pip install torch==2.0.0 torchvision==0.15.1 torchaudio==2.0.1 --index-url https://download.pytorch.org/whl/cu118`
+
 ****************  
 
 # Step 2: Prepare dataset
@@ -78,8 +84,6 @@ The input for VariPred must contains
 
 
 We recommand you have an at least 12GB GPU, e.g. NVIDIA GeForce 1080Ti
-
-PyTorch should be installed, see: https://pytorch.org/get-started/locally/
 
 "train.csv", "test.csv" are the example files as the training and test sets to re-train the model. "target.csv" is the example file for a simple prediction purpose.
 

@@ -21,6 +21,10 @@ VariPred was trained using the softwares included in the file "requirements.txt"
 
 ```shell
 $ git clone git@github.com:wlin16/VariPred.git
+
+# if you failed to clone the repo to your machine, try:
+# git clone https://github.com/wlin16/VariPred.git
+
 $ cd VariPred
 $ conda create -n varipred python=3.8.5
 $ conda install --file requirements.txt

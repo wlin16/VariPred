@@ -33,12 +33,10 @@ $ cd VariPred
 $ conda create -n varipred python=3.9 -y
 $ conda activate varipred
 $ pip install -r requirements.txt
+$ pip install torch==2.0.0 torchvision==0.15.1 torchaudio==2.0.1 --index-url https://download.pytorch.org/whl/cu118
+$ pip install fair-esm
 
 ```
-
-Note: PyTorch should be installed, see: https://pytorch.org/get-started/locally/
-
-In this study, we installed the Pytorch with this command: `pip install torch==2.0.0 torchvision==0.15.1 torchaudio==2.0.1 --index-url https://download.pytorch.org/whl/cu118`
 
 ****************  
 

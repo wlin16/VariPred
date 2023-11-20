@@ -9,7 +9,7 @@ VariPred is a novel and simple framework that leverages the power of pre-trained
 ***************  
 
 *Update on 2023.11.20:*
-- We uploaded a new `requirements.txt` file and also recommended you to create an environment with `python=3.9`. After install the packages with `requirements.txt file`, please install `torch` and `fair-esm` manually with the instruction given below. 
+- We uploaded a new `requirements.txt` file and also recommended you to create an environment with `python=3.9`. After install the packages with `requirements.txt` file, please install `torch` and `fair-esm` manually with the instruction given below. 
 
 
 *Update on 2023.8.3:*

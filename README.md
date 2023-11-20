@@ -8,16 +8,20 @@ VariPred is a novel and simple framework that leverages the power of pre-trained
 
 ***************  
 
+*Update on 2023.11.20:*
+- We uploaded a new `requirements.txt` file and also recommended you to create an environment with `python=3.9`. After install the packages with `requirements.txt file`, please install `torch` manual with the instruction given below. 
+
+
 *Update on 2023.8.3:*
 - We fixed bugs in VariPred_test.txt and VariPred_train.txt and also in the embedding extraction.
 
 *Update on 2023.5.5:*
-- Embeddings can be generated in batches, meaning that you can obtain them much more quickly by adjusting the batch_size_for_embed_gen parameter in the config file. For example, if you set batch_size_for_embed_gen=16 and use a GPU with larger memory, you can generate embeddings for 16 data points simultaneously.
+- Embeddings can be generated in batches, meaning that you can obtain them much more quickly by adjusting the batch_size_for_embed_gen parameter in the config file. For example, if you set `batch_size_for_embed_gen=16` and use a GPU with larger memory, you can generate embeddings for 16 data points simultaneously.
 
 
 # Step 1: Installation
 
-VariPred was trained using the softwares included in the file "requirements.txt". Please install requirements first.
+VariPred was trained using the packages included in the file "requirements.txt". Please install requirements first.
 
 ```shell
 $ git clone git@github.com:wlin16/VariPred.git
@@ -26,7 +30,7 @@ $ git clone git@github.com:wlin16/VariPred.git
 # git clone https://github.com/wlin16/VariPred.git
 
 $ cd VariPred
-$ conda create -n varipred python=3.8.5
+$ conda create -n varipred python=3.9 -y
 $ conda activate varipred
 $ pip install -r requirements.txt
 

@@ -144,7 +144,7 @@ def run_VariPred(target_ds,output):
     if not os.path.exists(storage_path):
         print('Please train the model first')
     
-    checkpoint=torch.load(f'{storage_path}/model.ckpt')
+    checkpoint=torch.load(f'{storage_path}/model.ckpt', map_location=config.device)
     model.load_state_dict(checkpoint['model_state_dict'])
     
     preds, y_true = utils.predict(target_loader, model, config.device)
